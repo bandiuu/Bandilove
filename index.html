@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Para Ella 💖</title>
   <style>
     * {
@@ -49,11 +49,12 @@
       100% { transform: translateY(120vh) rotate(360deg); }
     }
 
-    #message, #final {
+    #message {
       display: none;
       position: absolute;
+      top: 50%;
       left: 50%;
-      transform: translateX(-50%);
+      transform: translate(-50%, -50%);
       width: 90%;
       max-width: 600px;
       background: #fff;
@@ -63,24 +64,29 @@
       font-size: 16px;
       color: #a6005a;
       line-height: 1.6;
+      text-align: center;
       animation: fadeIn 2s ease forwards;
-    }
-
-    #message {
-      top: 10%;
       z-index: 10;
     }
 
     #final {
+      display: none;
+      position: absolute;
       bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
       text-align: center;
-      font-size: 24px;
+      font-size: 26px;
       font-weight: bold;
+      color: #d63384;
+      animation: fadeIn 2s ease forwards;
     }
 
     .highlight {
-      font-size: 32px;
-      color: #e60073;
+      font-size: 40px;
+      color: #ff3366;
+      display: block;
+      margin-bottom: 5px;
     }
 
     .falling-heart {
@@ -103,7 +109,7 @@
 </head>
 <body>
 
-  <!-- Corazones flotando iniciales -->
+  <!-- Corazones flotando de fondo -->
   <script>
     for (let i = 0; i < 20; i++) {
       const bgHeart = document.createElement('div');
@@ -116,8 +122,10 @@
     }
   </script>
 
+  <!-- Corazón principal -->
   <div id="heart">❤️</div>
 
+  <!-- Mensaje centrado -->
   <div id="message">
     <p>A veces me cuesta creer que en tan poco tiempo hayas llegado tan profundo en mí…<br><br>
     Pero lo hiciste. Con tus risas, tus audios largos, tus enojos espontáneos y hasta con esas respuestas que me dejan sin aire 😅<br><br>
@@ -128,10 +136,13 @@
     Te quiero más de lo que imaginás 💗</p>
   </div>
 
+  <!-- Mensaje final -->
   <div id="final">
-    <span class="highlight">B</span> + <span class="highlight">M</span> = I love you 💖
+    <span class="highlight">B y M</span>
+    I love you 💖
   </div>
 
+  <!-- Script de interacción -->
   <script>
     const heart = document.getElementById('heart');
     const message = document.getElementById('message');
