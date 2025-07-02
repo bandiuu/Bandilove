@@ -1,89 +1,113 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <title>Para Ella 💗</title>
+  <meta charset="UTF-8">
+  <title>Para Ella 💖</title>
   <style>
     body {
       margin: 0;
-      padding: 0;
-      background: linear-gradient(to bottom, #ffe0f0, #ffffff);
       overflow: hidden;
-      font-family: 'Arial', sans-serif;
+      background: radial-gradient(circle, #ffe6f0 0%, #fff0f5 100%);
+      font-family: 'Segoe UI', sans-serif;
+      position: relative;
+    }
+
+    .background-heart {
+      position: absolute;
+      top: -10%;
+      color: #ff99cc;
+      font-size: 24px;
+      opacity: 0.3;
+      animation: float 20s linear infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(-100px) rotate(0deg); }
+      100% { transform: translateY(120vh) rotate(360deg); }
     }
 
     #heart {
+      font-size: 120px;
+      color: red;
       position: absolute;
       top: 40%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-size: 100px;
-      color: red;
+      animation: pulse 1.5s infinite;
       cursor: pointer;
-      transition: transform 0.3s ease;
+      z-index: 5;
     }
 
-    #heart:hover {
-      transform: translate(-50%, -50%) scale(1.2);
-    }
-
-    #message {
-      display: none;
-      position: absolute;
-      top: 10%;
-      left: 10%;
-      width: 80%;
-      background: rgba(255, 255, 255, 0.8);
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-      font-size: 18px;
-      color: #333;
-      animation: fadeIn 2s ease forwards;
+    @keyframes pulse {
+      0% { transform: translate(-50%, -50%) scale(1); }
+      50% { transform: translate(-50%, -50%) scale(1.1); }
+      100% { transform: translate(-50%, -50%) scale(1); }
     }
 
     .falling-heart {
       position: absolute;
-      color: #ff69b4;
-      font-size: 20px;
+      color: #ff66a3;
+      font-size: 18px;
       animation: fall 5s linear infinite;
     }
 
     @keyframes fall {
-      0% {
-        top: -10%;
-        opacity: 1;
-      }
-      100% {
-        top: 100%;
-        opacity: 0;
-      }
+      0% { top: -10%; opacity: 1; }
+      100% { top: 110%; opacity: 0; }
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    #message, #final {
+      display: none;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      max-width: 80%;
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      font-size: 18px;
+      color: #a6005a;
+      animation: fadeIn 2s ease forwards;
+    }
+
+    #message {
+      top: 15%;
+      z-index: 10;
     }
 
     #final {
-      display: none;
-      position: absolute;
-      bottom: 30px;
-      width: 100%;
-      text-align: center;
-      font-size: 32px;
-      color: #d63384;
+      bottom: 40px;
+      font-size: 28px;
       font-weight: bold;
-      animation: fadeIn 3s ease forwards;
+      text-align: center;
     }
 
     .highlight {
-      font-size: 42px;
-      color: #ff3366;
+      font-size: 40px;
+      color: #e60073;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
+
+  <!-- Corazones flotando desde el inicio -->
+  <script>
+    for (let i = 0; i < 20; i++) {
+      const bgHeart = document.createElement('div');
+      bgHeart.classList.add('background-heart');
+      bgHeart.style.left = Math.random() * 100 + 'vw';
+      bgHeart.style.animationDuration = (15 + Math.random() * 15) + 's';
+      bgHeart.style.fontSize = (12 + Math.random() * 20) + 'px';
+      bgHeart.innerHTML = '💗';
+      document.body.appendChild(bgHeart);
+    }
+  </script>
 
   <div id="heart">❤️</div>
 
@@ -109,22 +133,24 @@
     heart.addEventListener('click', () => {
       heart.style.display = 'none';
       message.style.display = 'block';
-      final.style.display = 'block';
-      createFallingHearts();
-    });
 
-    function createFallingHearts() {
-      for (let i = 0; i < 50; i++) {
-        const heart = document.createElement('div');
-        heart.classList.add('falling-heart');
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
-        heart.style.fontSize = (Math.random() * 20 + 10) + "px";
-        heart.innerHTML = "💗";
-        document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), 6000);
+      // Lluvia de corazones
+      for (let i = 0; i < 60; i++) {
+        const falling = document.createElement('div');
+        falling.classList.add('falling-heart');
+        falling.innerHTML = '💖';
+        falling.style.left = Math.random() * 100 + 'vw';
+        falling.style.fontSize = (Math.random() * 20 + 14) + 'px';
+        falling.style.animationDuration = (2 + Math.random() * 3) + 's';
+        document.body.appendChild(falling);
+        setTimeout(() => falling.remove(), 6000);
       }
-    }
+
+      // Mostrar mensaje final
+      setTimeout(() => {
+        final.style.display = 'block';
+      }, 6000);
+    });
   </script>
 
 </body>
