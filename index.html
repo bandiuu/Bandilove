@@ -14,7 +14,9 @@
       padding: 0;
       background: radial-gradient(circle, #ffe6f0 0%, #fff0f5 100%);
       font-family: 'Segoe UI', sans-serif;
-      overflow: hidden;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
     }
 
     #heart {
@@ -51,10 +53,8 @@
 
     #message {
       display: none;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      position: relative;
+      margin: 80px auto 40px;
       width: 90%;
       max-width: 600px;
       background: #fff;
@@ -71,10 +71,8 @@
 
     #final {
       display: none;
-      position: absolute;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
+      position: relative;
+      margin: 30px auto 60px;
       text-align: center;
       font-size: 26px;
       font-weight: bold;
@@ -83,7 +81,7 @@
     }
 
     .highlight {
-      font-size: 40px;
+      font-size: 36px;
       color: #ff3366;
       display: block;
       margin-bottom: 5px;
@@ -94,6 +92,7 @@
       color: #ff66a3;
       font-size: 18px;
       animation: fall 5s linear infinite;
+      z-index: 1;
     }
 
     @keyframes fall {
@@ -109,7 +108,7 @@
 </head>
 <body>
 
-  <!-- Corazones flotando de fondo -->
+  <!-- Corazones flotando -->
   <script>
     for (let i = 0; i < 20; i++) {
       const bgHeart = document.createElement('div');
@@ -136,13 +135,13 @@
     Te quiero más de lo que imaginás 💗</p>
   </div>
 
-  <!-- Mensaje final -->
+  <!-- Frase final centrada -->
   <div id="final">
     <span class="highlight">B y M</span>
     I love you 💖
   </div>
 
-  <!-- Script de interacción -->
+  <!-- Script interacción -->
   <script>
     const heart = document.getElementById('heart');
     const message = document.getElementById('message');
@@ -165,7 +164,8 @@
 
       setTimeout(() => {
         final.style.display = 'block';
-      }, 5000);
+        final.scrollIntoView({ behavior: 'smooth' });
+      }, 4000);
     });
   </script>
 
